@@ -1,0 +1,31 @@
+# This file is part of multinss.
+#
+# multinss is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# multinss is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser Public License for more details.
+#
+# You should have received a copy of the GNU Lesser Public License
+# along with multinss.  If not, see <http://www.gnu.org/licenses/>.
+
+# - Config file for the <PROJECT> package
+# It defines the following variables
+#  <PROJECT>_INCLUDE_DIRS - include directories for the package
+#  <PROJECT>_LIBRARIES    - libraries to link against
+
+# Compute paths
+get_filename_component(@APP_NAME_UPPER@_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(@APP_NAME_UPPER@_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+
+# Our library dependencies (contains definitions for IMPORTED targets)
+if(NOT TARGET @APP_NAME_UPPER@ AND NOT @APP_NAME_UPPER@_BINARY_DIR)
+  include("${@APP_NAME_UPPER@_CMAKE_DIR}/@APPLICATION_NAME@Targets.cmake")
+endif()
+
+# These are IMPORTED targets created by <PROJECT>Targets.cmake
+set(@APP_NAME_UPPER@_LIBRARIES @PROJECT_NAME@)
