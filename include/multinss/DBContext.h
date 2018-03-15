@@ -19,6 +19,7 @@
 #define MULTINSS_DBCONTEXT_H
 
 #include <nss/pkit.h>
+#include <nss/secmodt.h>
 
 namespace multinss {
 
@@ -29,8 +30,24 @@ public:
   CERTCertDBHandle *getDbHandle() const;
   void setDbHandle(CERTCertDBHandle *);
 
+  PK11PasswordFunc getPasswordCb() const;
+  void setPasswordCb(PK11PasswordFunc);
+
+  SECMODModule *getInternalModule() const;
+  void setInternalModule(SECMODModule *);
+
+  PK11SlotInfo *getInternalKeySlot() const;
+  void setInternalKeySlot(PK11SlotInfo *);
+
+  NSSTrustDomain *getTrustDomain() const;
+  void setTrustDomain(NSSTrustDomain *);
+
 private:
   CERTCertDBHandle *db_handle;
+  PK11PasswordFunc password_cb;
+  SECMODModule *internal_module;
+  PK11SlotInfo *internal_key_slot;
+  NSSTrustDomain *trust_domain;
 };
 
 }

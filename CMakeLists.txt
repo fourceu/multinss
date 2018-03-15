@@ -73,10 +73,16 @@ pkg_check_modules(NSPR REQUIRED nspr)
 
 INCLUDE_DIRECTORIES(include ${PROJECT_BINARY_DIR} SYSTEM ${Boost_INCLUDE_DIRS} ${NSS_INCLUDE_DIRS} ${NSPR_INCLUDE_DIRS})
 
-SET(${APP_NAME_UPPER}_LIBS ${Boost_LIBRARIES} ${Qpid_LIBRARIES})
+SET(${APP_NAME_UPPER}_LIBS ${Boost_LIBRARIES})
 
 SET(${APP_NAME_UPPER}_SRCS
         src/multinss/DBContext.cxx
+        src/multinss/certificate_multi.cxx
+        src/multinss/certread_multi.cxx
+        src/multinss/pk11auth_multi.cxx
+        src/multinss/pk11cert_multi.cxx
+        src/multinss/pk11slot_multi.cxx
+        src/multinss/pk11util_multi.cxx
 )
 
 ADD_LIBRARY(${PROJECT_NAME} SHARED ${${APP_NAME_UPPER}_SRCS})
